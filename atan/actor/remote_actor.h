@@ -32,7 +32,7 @@ public:
 	void tell(int message_type, std::string msg = "")
 	{
 		message message_object = string_to_message(message_type, msg);
-		tell_(message_object);
+		tell_(message_object); 
 	}
 
 	message future(int message_type, int timeout_ms = 1000, std::string msg = "")

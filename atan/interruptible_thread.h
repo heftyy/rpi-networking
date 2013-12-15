@@ -51,7 +51,6 @@ public:
 
 	void join() {
 		std::lock_guard<std::mutex> lock(_thread_mutex);
-		std::cout << "[INTERRUPTIBLE_THREAD] joining thread: " << thread_->get_id() << std::endl;
 		if (thread_ && thread_->joinable())
 		{
 			thread_->join();

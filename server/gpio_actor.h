@@ -13,7 +13,7 @@ class gpio_actor: public local_actor
 public:
 	gpio_actor(actor_system& actor_system, int actor_sleep_ms = 10) : local_actor("gpio_actor", actor_system, actor_sleep_ms)
 	{
-		gpio_ = std::unique_ptr<gpio_server>(new gpio_server(actor_system));
+		gpio_ = std::unique_ptr<gpio_server>(new gpio_server());
 	}
 
 	~gpio_actor()
@@ -23,11 +23,12 @@ public:
 private:
 	std::unique_ptr<gpio_server> gpio_;
 
-	void on_receive(message& msg)
+	void on_receive(message msg)
 	{
 		if (msg.type == GPIO_REQUEST_PINS)
 		{
-			reply(GPIO_PINS_LIST, gpio_->get_pins().get_serialized(), msg.sender);
+			gpio_pins_message pins = gpio_->get_pins();
+			reply(GPIO_PINS_LIST, pins.get_serialized(), msg.sender);
 		}
 		else if (msg.type == GPIO_SET_PINS)
 		{

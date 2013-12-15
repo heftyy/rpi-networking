@@ -40,7 +40,7 @@ public:
 
 		if (dialog.ShowModal() == wxID_OK)
 		{
-			return dialog.GetValue();
+			return dialog.GetValue().ToStdString();
 		}
 		return "";
 	}

@@ -21,9 +21,6 @@
     <ClInclude Include="gpio_pins_message.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="gpio_pwm_actor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="gpio_server.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -31,6 +28,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="gpio_client.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gpio_pin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gpio_pwm_actor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

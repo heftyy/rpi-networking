@@ -2,12 +2,13 @@
 #include <iostream>
 #include <atan/actor/remote_actor.h>
 #include <gpio_settings.h>
+#include "gpio_pins_message.h"
 
 class gpio_client_actor : public remote_actor
 {
 public:
-	gpio_client_actor(std::string& remote_actor_ref, actor_system& actor_system, std::function<void(std::string)> receive_function, int actor_sleep_ms = 10) 
-		: remote_actor("gpio_client_actor", actor_system, actor_ref(remote_actor_ref), actor_sleep_ms), receive_function_(receive_function)
+	gpio_client_actor(std::string& remote_actor_ref, actor_system& actor_system, std::function<void(gpio_pins_message)> receive_pins_function, int actor_sleep_ms = 10)
+		: remote_actor("gpio_client_actor", actor_system, actor_ref(remote_actor_ref), actor_sleep_ms), receive_pins_function_(receive_pins_function)
 	{
 		//actor_system_.add_actor(std::shared_ptr<test_actor>(this));
 	}
@@ -17,7 +18,7 @@ public:
 	}
 
 private:
-	std::function<void(std::string)> receive_function_;
+	std::function<void(gpio_pins_message)> receive_pins_function_;
 
 	void on_receive(message& msg)
 	{
@@ -25,7 +26,11 @@ private:
 		std::cout << "gpio_client_actor received message from " << msg.sender.actor_name << std::endl;
 		std::cout << "message was " << std::string(msg.data.begin(), msg.data.end()) << std::endl;
 
-		receive_function_(msg.data);
+		if (msg.type == GPIO_PINS_LIST)
+		{
+			gpio_pins_message pins_msg = gpio_pins_message(msg.data);
+			receive_pins_function_(pins_msg);
+		}
 
 		std::string msg_string = std::string(msg.data.begin(), msg.data.end());
 		//reply(msg_string, msg.sender);

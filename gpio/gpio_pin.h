@@ -7,25 +7,38 @@
 #include <boost/archive/text_oarchive.hpp>
 #include <boost/archive/text_iarchive.hpp>
 #include <boost/serialization/vector.hpp>
-#include "gpio_pin.h"
 
-class gpio_pins_message
+class gpio_pwm_actor;
+
+/**
+value = the time pin will be on in specified range
+range = hz
+*/
+class gpio_pin
 {
 public:
 	friend class boost::serialization::access;
-	std::vector<gpio_pin> pins;
+	int pin;
+	int pin_label;
+	int value;
+	int range;
+	int mode;
+	bool pwm;
+	std::shared_ptr<gpio_pwm_actor> pwm_actor;
 
-	gpio_pins_message() {}
-	gpio_pins_message(std::vector<gpio_pin>& pins) : pins(pins) {}
-	gpio_pins_message(std::string& received_data)
+	gpio_pin() : pin(-1), mode(-1), pwm(false) {}
+	gpio_pin(int pin, int pin_label) : pin(pin), pin_label(pin_label), value(0), range(0), pwm(false), pwm_actor(nullptr), mode(-1) {}
+
+	gpio_pin(std::string received_data)
 	{
 		std::istringstream is(received_data);
 
 		boost::archive::text_iarchive in_archive(is);
-		gpio_pins_message* pins = new gpio_pins_message;
-		in_archive >> pins;
-		this->pins = pins->pins;
+		gpio_pin *pin = new gpio_pin;
+		in_archive >> pin;
+		std::memcpy(this, pin, sizeof(gpio_pin));
 	}
+
 
 	std::string get_serialized()
 	{
@@ -39,6 +52,11 @@ public:
 	template<class Archive>
 	void serialize(Archive & ar, const unsigned int version)
 	{
-		ar & pins;
+		ar & pin;
+		ar & pin_label;
+		ar & value;
+		ar & range;
+		ar & mode;
+		ar & pwm;
 	}
 };

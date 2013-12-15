@@ -20,19 +20,22 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="gui\basic_pane.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="gui\gui_frame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="gui\gui_main.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="gui\gui_slider.h">
+    <ClInclude Include="gpio_client_actor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="gpio_client_actor.h">
+    <ClInclude Include="gui\widget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\sliders_panel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gui\gui_sliders_panel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -21,7 +21,7 @@ public:
 
 	virtual void tell(const message& msg) {}
 	virtual void tell(int type, std::string msg, std::shared_ptr<actor> sender_actor = nullptr) {}
-	virtual void on_receive(message& msg) {}
+	virtual void on_receive(message msg) {}
 	std::string actor_name();
 	std::string system_name();
 	void reply(int type, std::string msg, actor_ref& target_ref);
@@ -43,7 +43,7 @@ public:
 		});
 	}
 
-	void add_message(const message& msg)
+	void add_message(const message msg)
 	{
 		std::lock_guard<std::mutex> guard(queue_mutex_);
 		message_queue_.push(msg);
@@ -106,7 +106,7 @@ protected:
 	void remove_finished_message()
 	{
 		std::lock_guard<std::mutex> guard(queue_mutex_);
-		message_queue_.pop();
+		if (message_queue_.size() > 0) message_queue_.pop();
 	}
 
 	void run_task(std::unique_ptr<message> msg)

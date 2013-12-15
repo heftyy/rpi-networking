@@ -3,12 +3,11 @@
 #include <atomic>
 #include <memory>
 #include <atan/actor_system/actor_system.h>
-#include "gpio_client_actor.h"
-//#include "gui/gui_main.h"
+//#include "gpio_client_actor.h"
+#include "gui/gui_main.h"
 
 int main(int argc, char** argv)
 {
-	/*
 	wxApp::SetInstance(new gui_main());
 	wxEntryStart(argc, argv);
 	wxTheApp->OnInit();
@@ -18,26 +17,8 @@ int main(int argc, char** argv)
 	wxTheApp->OnRun();
 	wxTheApp->OnExit();
 	wxEntryCleanup();
-	*/
 
 	/*
-	auto target = std::unique_ptr<actor_ref>(new actor_ref("target_name$target_system_nane@127.0.0.1:1337"));
-	auto sender = std::unique_ptr<actor_ref>(new actor_ref("sender_name$sender_system_nane@127.0.0.1:0"));
-	message msg(std::move(target), std::move(sender), "aaaaaaaaaaaaaa", 1);
-
-	std::ostringstream out_stream;
-	boost::archive::text_oarchive out_archive(out_stream);
-	out_archive << msg;
-	std::string serialized_data;
-	serialized_data = out_stream.str();
-	std::cout << serialized_data << std::endl;
-
-	message out_msg;
-	std::istringstream in_stream(serialized_data);
-	boost::archive::text_iarchive in_archive(in_stream);
-	in_archive >> out_msg;
-	*/
-
 	std::cout << "main thread id = " << std::this_thread::get_id() << std::endl;
 
 	try
@@ -60,17 +41,9 @@ int main(int argc, char** argv)
 			std::cout << "connect successed" << std::endl;
 		}
 
-		response = actor->future(GPIO_CONNECT, 1000);
-		if (response.type != GPIO_CONNECTED)
-		{
-			std::cout << "type is not GPIO_CONNECTED" << std::endl;
-		}
-		else if (response.type == GPIO_CONNECTED)
-		{
-			std::cout << "connect successed" << std::endl;
-		}
+		actor->tell(GPIO_REQUEST_PINS);
 
-		_sleep(1000);
+		_sleep(2000);
 		//as.get_actor("test_actor");
 	}
 	catch (std::runtime_error)
@@ -85,6 +58,7 @@ int main(int argc, char** argv)
 	{
 		std::cout << "Got an exception!";
 	}
+	*/
 
 	std::cout << "PROGRAM STOP" << std::endl;
 	return 0;

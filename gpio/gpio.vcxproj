@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClInclude Include="gpio_client.h" />
     <ClInclude Include="gpio_error.h" />
+    <ClInclude Include="gpio_pin.h" />
     <ClInclude Include="gpio_pins_message.h" />
     <ClInclude Include="gpio_pwm_actor.h" />
     <ClInclude Include="gpio_server.h" />
