@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2013 for Windows Desktop
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "atan", "atan\atan_lib.vcxproj", "{E2956DDF-2D45-428F-9F0E-C211D9ADB051}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "server", "server\server.vcxproj", "{C519E607-DFDA-4FB2-867D-3A1EA64F3DF9}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "client", "client\client.vcxproj", "{8218F4FD-8DA9-4BEF-966F-86CEAD69B3FB}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gpio", "gpio\gpio.vcxproj", "{9637D261-965C-4A3F-B6E6-B205C2F7F9B2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E2956DDF-2D45-428F-9F0E-C211D9ADB051}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E2956DDF-2D45-428F-9F0E-C211D9ADB051}.Debug|Win32.Build.0 = Debug|Win32
+		{E2956DDF-2D45-428F-9F0E-C211D9ADB051}.Release|Win32.ActiveCfg = Release|Win32
+		{E2956DDF-2D45-428F-9F0E-C211D9ADB051}.Release|Win32.Build.0 = Release|Win32
+		{C519E607-DFDA-4FB2-867D-3A1EA64F3DF9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C519E607-DFDA-4FB2-867D-3A1EA64F3DF9}.Debug|Win32.Build.0 = Debug|Win32
+		{C519E607-DFDA-4FB2-867D-3A1EA64F3DF9}.Release|Win32.ActiveCfg = Release|Win32
+		{C519E607-DFDA-4FB2-867D-3A1EA64F3DF9}.Release|Win32.Build.0 = Release|Win32
+		{8218F4FD-8DA9-4BEF-966F-86CEAD69B3FB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8218F4FD-8DA9-4BEF-966F-86CEAD69B3FB}.Debug|Win32.Build.0 = Debug|Win32
+		{8218F4FD-8DA9-4BEF-966F-86CEAD69B3FB}.Release|Win32.ActiveCfg = Release|Win32
+		{8218F4FD-8DA9-4BEF-966F-86CEAD69B3FB}.Release|Win32.Build.0 = Release|Win32
+		{9637D261-965C-4A3F-B6E6-B205C2F7F9B2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9637D261-965C-4A3F-B6E6-B205C2F7F9B2}.Debug|Win32.Build.0 = Debug|Win32
+		{9637D261-965C-4A3F-B6E6-B205C2F7F9B2}.Release|Win32.ActiveCfg = Release|Win32
+		{9637D261-965C-4A3F-B6E6-B205C2F7F9B2}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
