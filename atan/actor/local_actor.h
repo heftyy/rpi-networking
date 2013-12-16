@@ -9,7 +9,7 @@ public:
 	local_actor(const std::string& name, actor_system& actor_system, int actor_sleep_ms = 10) 
 		: actor(name, actor_system, actor_sleep_ms) {}
 
-	void tell(message msg)
+	void tell(const message& msg)
 	{
 		add_message(msg);
 	}
