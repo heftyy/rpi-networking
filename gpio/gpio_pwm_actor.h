@@ -26,7 +26,7 @@ private:
 	int range_;
 	int pin_;
 
-	void on_receive(message msg)
+	void on_receive(const message& msg)
 	{
 		if (msg.type == GPIO_PWM_START)
 		{
