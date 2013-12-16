@@ -58,7 +58,7 @@ public:
 		}
 	}
 
-	void interruptible_thread::check_for_interrupt() {
+	void check_for_interrupt() {
 		if (!_flag.load()) { return; }
 
 		throw interrupt_thread_error("thread interrupted");
