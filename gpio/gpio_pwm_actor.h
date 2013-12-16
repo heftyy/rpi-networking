@@ -79,6 +79,8 @@ private:
 	{
 		if (pwm_thread_)
 		{
+			pinMode(pin_, GPIO_MODE_OUT);
+			digitalWrite(pin_, 0);
 			pwm_thread_->stop();
 			pwm_thread_.release();
 		}
