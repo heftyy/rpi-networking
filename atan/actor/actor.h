@@ -21,7 +21,7 @@ public:
 
 	virtual void tell(const message& msg) {}
 	virtual void tell(int type, std::string msg, std::shared_ptr<actor> sender_actor = nullptr) {}
-	virtual void on_receive(message msg) {}
+	virtual void on_receive(const message& msg) {}
 	std::string actor_name();
 	std::string system_name();
 	void reply(int type, std::string msg, actor_ref& target_ref);
