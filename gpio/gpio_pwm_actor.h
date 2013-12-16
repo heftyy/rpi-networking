@@ -1,6 +1,6 @@
 #pragma once
 
-#include <atan\actor\local_actor.h>
+#include <atan/actor/local_actor.h>
 #include "gpio_pins_message.h"
 #include "gpio_settings.h"
 
