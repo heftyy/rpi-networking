@@ -23,7 +23,7 @@ public:
 private:
 	std::unique_ptr<gpio_server> gpio_;
 
-	void on_receive(const message& msg)
+	void on_receive(message msg)
 	{
 		if (msg.type == GPIO_REQUEST_PINS)
 		{
