@@ -40,7 +40,7 @@ public:
 		parse(std::string(received_data));
 	}
 
-	packet(std::string received_data)
+	packet(const std::string& received_data)
 	{
 		parse(received_data);
 	}
@@ -61,7 +61,7 @@ public:
 		//return std::unique_ptr<std::vector<char>>(new std::vector<char>(serialized_data.begin(), serialized_data.end()));
 	}
 
-	void parse(std::string received_data)
+	void parse(const std::string& received_data)
 	{
 		std::istringstream is(received_data);
 
