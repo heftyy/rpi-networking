@@ -59,7 +59,7 @@ public:
 
 	std::unique_ptr<packet> sync_receive(const udp::endpoint& target_endpoint, int timeout_ms)
 	{
-		std::atomic<bool> stop_deadline = false;
+		std::atomic<bool> stop_deadline(false);
 		auto expires_at = std::chrono::system_clock::now() + std::chrono::milliseconds(1000);
 
 		auto deadline_check = std::thread([&expires_at, &stop_deadline, this]()
