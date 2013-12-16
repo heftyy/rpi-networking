@@ -20,7 +20,7 @@ public:
 private:
 	std::function<void(gpio_pins_message)> receive_pins_function_;
 
-	void on_receive(message& msg)
+	void on_receive(message msg)
 	{
 		std::cout << "[GPIO_CLIENT_ACTOR] on_receive thread id = " << std::this_thread::get_id() << std::endl;
 		std::cout << "gpio_client_actor received message from " << msg.sender.actor_name << std::endl;
