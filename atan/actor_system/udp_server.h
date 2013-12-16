@@ -40,7 +40,7 @@ public:
 		}
 	}
 
-	std::unique_ptr<packet> future(std::string& data, udp::endpoint& target_endpoint, int timeout_ms)
+	std::unique_ptr<packet> future(const std::string& data, const udp::endpoint& target_endpoint, int timeout_ms)
 	{
 		sync_send(data, target_endpoint);
 		std::unique_ptr<packet> packet;
@@ -52,12 +52,12 @@ public:
 		return nullptr;
 	}
 
-	void sync_send(std::string& data, udp::endpoint& target_endpoint)
+	void sync_send(const std::string& data, const udp::endpoint& target_endpoint)
 	{
 		future_socket_.send_to(boost::asio::buffer(data.c_str(), data.length()), target_endpoint);
 	}
 
-	std::unique_ptr<packet> sync_receive(udp::endpoint& target_endpoint, int timeout_ms)
+	std::unique_ptr<packet> sync_receive(const udp::endpoint& target_endpoint, int timeout_ms)
 	{
 		std::atomic<bool> stop_deadline = false;
 		auto expires_at = std::chrono::system_clock::now() + std::chrono::milliseconds(1000);
@@ -108,7 +108,7 @@ public:
 	}
 
 	//void do_send(std::unique_ptr<std::vector<char>> data, udp::endpoint& target_endpoint)
-	void do_send(std::string& data, udp::endpoint& target_endpoint)
+	void do_send(const std::string& data, udp::endpoint& target_endpoint)
 	{
 		//std::cout << "do_send thread id = " << std::this_thread::get_id() << std::endl;
 		socket_.async_send_to(
