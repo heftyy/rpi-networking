@@ -20,12 +20,6 @@ public:
 	gui_main()
 	{
 		actor_system_ = std::unique_ptr<actor_system>(new actor_system("client_system", 8558));
-		std::string rpi_actor_ref = "gpio_actor$raspberry_pi@127.0.0.1:8556";
-		client_actor_ = std::shared_ptr<gpio_client_actor>(new gpio_client_actor(rpi_actor_ref, *actor_system_, [this](gpio_pins_message msg)
-		{
-			//render_pins(msg.pins);
-		}));
-		actor_system_->add_actor(client_actor_);
 	}
 
 	virtual bool OnInit()
@@ -51,6 +45,13 @@ public:
 		{
 			return false;
 		}
+
+		std::string rpi_actor_ref = "gpio_actor$raspberry_pi@"+address;
+		client_actor_ = std::shared_ptr<gpio_client_actor>(new gpio_client_actor(rpi_actor_ref, *actor_system_, [this](gpio_pins_message msg)
+		{
+			//render_pins(msg.pins);
+		}));
+		actor_system_->add_actor(client_actor_);
 
 		message response = client_actor_->future(GPIO_CONNECT);
 		if (response.type != GPIO_CONNECTED)

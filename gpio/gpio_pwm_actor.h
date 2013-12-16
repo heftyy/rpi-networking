@@ -58,15 +58,15 @@ private:
 				int wait_for = range_ - value_;
 				if (value_ > 0)
 				{
-					//digitalWrite(pin, HIGH);
-					std::cout << "PIN_" << pin_ << ": ON" << std::endl;
+					digitalWrite(pin_, 1);
+					//std::cout << "PIN_" << pin_ << ": ON" << std::endl;
 					std::chrono::microseconds sleep_duration(value_*PULSE_TIME);
 					std::this_thread::sleep_for(sleep_duration);
 				}
 				if (wait_for > 0)
 				{
-					//digitalWrite (pin, LOW);
-					std::cout << "PIN_" << pin_ << ": OFF" << std::endl;
+					digitalWrite (pin_, 0);
+					//std::cout << "PIN_" << pin_ << ": OFF" << std::endl;
 					std::chrono::microseconds sleep_duration(wait_for*PULSE_TIME);
 					std::this_thread::sleep_for(sleep_duration);
 				}

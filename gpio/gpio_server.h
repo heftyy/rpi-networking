@@ -1,7 +1,6 @@
 #pragma once
 
 #include <wiringPi.h>
-#include <softPwm.h>
 #include <string>
 #include <vector>
 #include <array>
@@ -60,6 +59,7 @@ public:
 		if (is_pin_available(pin))
 		{
 			pinMode(pin, GPIO_MODE_OUT);
+			digitalWrite(pin, value);
 		}
 	}
 
@@ -86,7 +86,7 @@ private:
 
 	int get_pin_iter(int pin)
 	{
-		for (int i = 0; i < pins.size(); i++)
+		for (unsigned int i = 0; i < pins.size(); i++)
 		{
 			if (pins[i].pin == pin) return i;
 		}
