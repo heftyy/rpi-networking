@@ -6,16 +6,11 @@
 #include "gui_frame.h"
 //#include "gui_slider.h"
 #include "../gpio_client_actor.h"
-#include "sliders_panel.h"
 #include "gui_sliders_panel.h"
-
-#define SLIDER_HEIGHT 20
-#define SLIDER_WIDTH 150
 
 class gui_main : public wxApp
 {
 public:
-	const static int ID_MAIN = 100;
 
 	gui_main()
 	{
@@ -24,7 +19,7 @@ public:
 
 	virtual bool OnInit()
 	{
-		frame_ = new gui_frame(_("hddda"), wxPoint(50, 50), wxSize(400, 800));
+		frame_ = new gui_frame(_("R-pi gpio contols"), wxPoint(50, 50), wxSize(700, 600));
 
 		/*
 		slidersPage *p = new slidersPage(frame_);
@@ -67,16 +62,16 @@ public:
 		message msg = client_actor_->future(GPIO_REQUEST_PINS, 1000);
 		gpio_pins_message pins_msg(msg.data);
 
-		gui_sliders_panel *sliders_panel = new gui_sliders_panel(frame_, [this](int pin_id, int value)
+		gui_sliders_panel *sliders_panel = new gui_sliders_panel(frame_, [this](int pin_id, int value, bool pwm)
 		{
-			std::cout << "pin_id = " << pin_id << " value = " << value << std::endl;
-			this->update_pin_pwm(pin_id, value);
+			this->update_pin_pwm(pin_id, value, pwm);
 		});
 		sliders_panel->render(pins_msg.pins);
 	}
 
-	void update_pin_pwm(int pin_id, int value)
+	void update_pin_pwm(int pin_id, int value, bool pwm)
 	{
+                std::cout << "pin_id = " << pin_id << " value = " << value << " pwm = " << pwm << std::endl;
 		std::vector<gpio_pin> pins;
 		gpio_pin pin;
 		pin.pin = pin_id;
