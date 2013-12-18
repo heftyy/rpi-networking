@@ -30,7 +30,7 @@ public:
         std::cout << "RENDER" << std::endl;
         main_sizer_->Clear();
 		wxSizer* top_sizer = new wxBoxSizer(wxHORIZONTAL);
-		create_sizer_with_text_and_label(wxT("&Range multiplier"), wxID_ANY, &range_multiplier_);
+		range_multiplier_ = new wxTextCtrl(this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER);
 		top_sizer->Add(range_multiplier_, 0, wxTOP | wxCENTER, 5);
 		range_multiplier_->SetValue(wxT("1"));
 
