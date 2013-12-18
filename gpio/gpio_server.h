@@ -32,6 +32,7 @@ public:
 
 	void pwm(actor_system& actor_system, int pin, int value, int range = 100)
 	{
+		std::cout << "[PWM] pin = " << pin << " value = " << value << " mode = " << GPIO_MODE_OUT << std::endl;
 		int pin_iter = get_pin_iter(pin);
 		pins[pin_iter].pin = pin;
 		pins[pin_iter].value = value;
@@ -54,10 +55,13 @@ public:
 		}
 	}
 
-	void write(int pin, bool value)
+	void write(int pin, int value)
 	{
 		if (is_pin_available(pin))
 		{
+			int pin_iter = get_pin_iter(pin);
+			pins[pin_iter].pwm = false;
+			std::cout << "pin = " << pin << " value = " << value << " mode = " << GPIO_MODE_OUT << std::endl;
 			pinMode(pin, GPIO_MODE_OUT);
 			digitalWrite(pin, value);
 		}

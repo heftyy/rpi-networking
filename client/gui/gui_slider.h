@@ -14,11 +14,12 @@ public:
         wxSizer *widget_sizer = new wxStaticBoxSizer(box, wxHORIZONTAL);
 
         int max_value = pin.pwm ? 100 : 1;
-        slider_ = new wxSlider(panel_, wxID_ANY, 0, 0, max_value, wxPoint(0, 0), wxSize(slider_width_, slider_height_), slider_flag_);
+		slider_ = new wxSlider(panel_, wxID_ANY, 0, 0, max_value, wxPoint(0, 0), wxSize(slider_width_, slider_height_), slider_flag_);
         panel->Bind(wxEVT_SCROLL_CHANGED, &gui_slider::on_change, this, slider_->GetId());
-        widget_sizer->Add(slider_, 1, wxCENTRE | wxALL, 5);
+        widget_sizer->Add(slider_, 1, wxEXPAND, 5);
 
         pwm_button_ = new wxToggleButton(panel_, wxID_ANY, wxT("PWM"), wxPoint(20, 20), wxSize(40,20));
+		pwm_button_->SetValue(pin.pwm ? 1 : 0);
         panel->Bind(wxEVT_COMMAND_TOGGLEBUTTON_CLICKED, &gui_slider::pwm_toggle, this, pwm_button_->GetId());
         widget_sizer->Add(pwm_button_, 0, wxALL | wxGROW, 5);
 

@@ -41,7 +41,7 @@ private:
 				}
 				else
 				{
-					gpio_->write(pin.pin, pin.value > 0 ? true : false);
+					gpio_->write(pin.pin, pin.value > 0 ? 1 : 0);
 				}
 			}
 		}
