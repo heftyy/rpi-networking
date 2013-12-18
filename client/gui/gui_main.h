@@ -19,7 +19,7 @@ public:
 
 	virtual bool OnInit()
 	{
-		frame_ = new gui_frame(_("R-pi gpio contols"), wxPoint(50, 50), wxSize(700, 600));
+		frame_ = new gui_frame(_("R-pi gpio contols"), wxPoint(50, 50), wxSize(730, 450));
 
 		/*
 		slidersPage *p = new slidersPage(frame_);
@@ -62,22 +62,23 @@ public:
 		message msg = client_actor_->future(GPIO_REQUEST_PINS, 1000);
 		gpio_pins_message pins_msg(msg.data);
 
-		gui_sliders_panel *sliders_panel = new gui_sliders_panel(frame_, [this](int pin_id, int value, bool pwm)
+		sliders_panel_ = new gui_sliders_panel(frame_, [this](int pin_id, int value, bool pwm)
 		{
 			this->update_pin_pwm(pin_id, value, pwm);
 		});
-		sliders_panel->render(pins_msg.pins);
+		sliders_panel_->render(pins_msg.pins);
 	}
 
 	void update_pin_pwm(int pin_id, int value, bool pwm)
 	{
-                std::cout << "pin_id = " << pin_id << " value = " << value << " pwm = " << pwm << std::endl;
+        std::cout << "pin_id = " << pin_id << " value = " << value << " pwm = " << pwm << std::endl;
+		int mul = sliders_panel_->get_range_multiplier();
 		std::vector<gpio_pin> pins;
 		gpio_pin pin;
 		pin.pin = pin_id;
-		pin.value = value;
+		pin.value = value*mul;
 		pin.pwm = pwm;
-		pin.range = 100;
+		pin.range = 100*mul;
 		pin.mode = GPIO_MODE_OUT;
 		pins.push_back(pin);
 		gpio_pins_message pins_msg(pins);
@@ -93,4 +94,5 @@ private:
 	gui_frame* frame_;
 	std::shared_ptr<gpio_client_actor> client_actor_;
 	std::unique_ptr<actor_system> actor_system_;
+	gui_sliders_panel *sliders_panel_;
 };

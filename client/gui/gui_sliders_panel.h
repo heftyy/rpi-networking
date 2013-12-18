@@ -29,6 +29,11 @@ public:
     void render(std::vector<gpio_pin> pins) {
         std::cout << "RENDER" << std::endl;
         main_sizer_->Clear();
+		wxSizer* top_sizer = new wxBoxSizer(wxHORIZONTAL);
+		create_sizer_with_text_and_label(wxT("&Range multiplier"), wxID_ANY, &range_multiplier_);
+		top_sizer->Add(range_multiplier_, 0, wxTOP | wxCENTER, 5);
+		range_multiplier_->SetValue(wxT("1"));
+
         wxGridSizer* grid_sizer_ = new wxGridSizer(pins.size()/3, 3, 3, 3);
         int i = 0;
         for (auto pin : pins) {
@@ -38,6 +43,7 @@ public:
             grid_sizer_->Add(slider_widget_sizer, 0, wxALL | wxGROW, 5);
             i++;
         }
+		main_sizer_->Add(top_sizer, 0, wxCENTER, 5);
         main_sizer_->Add(grid_sizer_, 0, wxALL, 5);
         SetSizer(main_sizer_);
     }
@@ -46,14 +52,39 @@ public:
         Refresh();
     }
 
+	int get_range_multiplier()
+	{
+		return atoi(range_multiplier_->GetValue().c_str());
+	}
+
 protected:
     wxSizer* main_sizer_;
     wxSizer* slider_sizer_;
+	wxTextCtrl* range_multiplier_;
     std::vector<gui_slider*> sliders_;
     std::function<void(int, int, bool) > on_change_;
     const static int ID_SLIDER_MIN = 200;
     const static int slider_width_ = 150;
     const static int slider_height_ = 40;
+
+	wxSizer* create_sizer_with_text(wxControl *control, wxWindowID id, wxTextCtrl **ppText)
+	{
+		wxSizer *sizerRow = new wxBoxSizer(wxHORIZONTAL);
+		range_multiplier_ = new wxTextCtrl(this, id, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER);
+
+		sizerRow->Add(control, 0, wxCENTER | wxALIGN_CENTRE_VERTICAL, 5);
+		sizerRow->Add(range_multiplier_, 1, wxCENTER | wxALIGN_CENTRE_VERTICAL, 5);
+
+		if (ppText) *ppText = range_multiplier_;
+
+		return sizerRow;
+	}
+
+	// create a sizer containing a label and a text ctrl
+	wxSizer* create_sizer_with_text_and_label(const wxString& label, wxWindowID id, wxTextCtrl **ppText)
+	{
+		return create_sizer_with_text(new wxStaticText(this, wxID_ANY, label), id, ppText);
+	}
 
     /*
     void on_paint(wxPaintEvent& event)

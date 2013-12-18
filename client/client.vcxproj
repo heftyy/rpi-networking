@@ -94,6 +94,9 @@
     <ClInclude Include="gpio_client_actor.h" />
     <ClInclude Include="gui\widget.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="client.exe" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

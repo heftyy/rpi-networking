@@ -32,7 +32,7 @@ public:
     wxToggleButton* pwm_button_;
     std::function<void(int, int, bool) >on_change_;
     gpio_pin pin_;
-    const static int slider_width_ = 200;
+    const static int slider_width_ = 150;
     const static int slider_height_ = 50;
     const static int slider_flag_ = 0 | wxSL_MIN_MAX_LABELS | wxSL_VALUE_LABEL;
 
@@ -47,6 +47,7 @@ public:
         if(toggle) slider_->SetMax(100);
         else slider_->SetMax(1);
         slider_->SetValue(0);
+		on_change_(pin_.pin, 0, !pwm_button_->GetValue());
     }
 
     void on_scroll(wxScrollEvent& event) {
