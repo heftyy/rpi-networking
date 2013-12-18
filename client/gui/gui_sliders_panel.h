@@ -7,7 +7,7 @@
 #include <wx/tglbtn.h>
 #include <wx/slider.h>
 #include "gpio_pin.h"
-#include "../gui_slider.h"
+#include "gui_slider.h"
 
 /*
 struct {
