@@ -51,7 +51,7 @@ public:
 		message response = client_actor_->future(GPIO_CONNECT);
 		if (response.type != GPIO_CONNECTED)
 		{
-			frame_->alert("Tried to connect to " + address, "Failed");
+			frame_->alert("Failed to connect to " + address, "Failed");
 			return false;
 		}
 		return true;
@@ -76,7 +76,7 @@ public:
 		gpio_pin pin;
 		pin.pin = pin_id;
 		pin.value = value;
-		pin.pwm = true;
+		pin.pwm = pwm;
 		pin.range = 100;
 		pin.mode = GPIO_MODE_OUT;
 		pins.push_back(pin);

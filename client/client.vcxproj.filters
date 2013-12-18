@@ -32,10 +32,10 @@
     <ClInclude Include="gui\widget.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="gui\sliders_panel.h">
+    <ClInclude Include="gui\gui_sliders_panel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="gui\gui_sliders_panel.h">
+    <ClInclude Include="gui\gui_slider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

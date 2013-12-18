@@ -76,11 +76,10 @@ private:
 
 	bool is_pin_available(int pin)
 	{
-		bool safe = false;
-		std::for_each(this->pins.begin(), this->pins.end(), [pin, &safe](const gpio_pin& gpio_pin)
+		for (unsigned int i = 0; i < pins.size(); i++)
 		{
-			if (pin == gpio_pin.pin) safe = true;
-		});
+			if (pins[i].pin == pin) return true;
+		}
 		return false;
 	}
 

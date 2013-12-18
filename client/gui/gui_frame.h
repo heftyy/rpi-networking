@@ -35,7 +35,7 @@ public:
 			wxT("")
 			wxT("Connect to [ip:port]:"),
 			wxT("R-PI gpio control"),
-			wxT("127.0.0.1:8556"),
+			wxT("192.168.0.102:8556"),
 			wxOK | wxCANCEL);
 
 		if (dialog.ShowModal() == wxID_OK)

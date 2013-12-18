@@ -18,7 +18,7 @@ public:
         panel->Bind(wxEVT_SCROLL_CHANGED, &gui_slider::on_change, this, slider_->GetId());
         widget_sizer->Add(slider_, 1, wxCENTRE | wxALL, 5);
 
-        pwm_button_ = new wxToggleButton(panel_, wxID_ANY, wxT("PWM"), wxPoint(20, 20));
+        pwm_button_ = new wxToggleButton(panel_, wxID_ANY, wxT("PWM"), wxPoint(20, 20), wxSize(40,20));
         panel->Bind(wxEVT_COMMAND_TOGGLEBUTTON_CLICKED, &gui_slider::pwm_toggle, this, pwm_button_->GetId());
         widget_sizer->Add(pwm_button_, 0, wxALL | wxGROW, 5);
 

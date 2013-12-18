@@ -87,7 +87,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="gui\sliders_panel.h" />
+    <ClInclude Include="gui\gui_slider.h" />
     <ClInclude Include="gui\gui_frame.h" />
     <ClInclude Include="gui\gui_main.h" />
     <ClInclude Include="gui\gui_sliders_panel.h" />
